@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sender_email.name %>
+</p>
+
+<p>
+  <strong>Email username:</strong>
+  <%= @sender_email.email_username %>
+</p>
+
+<p>
+  <strong>Email password:</strong>
+  <%= @sender_email.email_password %>
+</p>
+
+<p>
+  <strong>Email address:</strong>
+  <%= @sender_email.email_address %>
+</p>
+
+<p>
+  <strong>Email port:</strong>
+  <%= @sender_email.email_port %>
+</p>
+
+<p>
+  <strong>Authentication:</strong>
+  <%= @sender_email.authentication %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @sender_email.company_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sender_email.user_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @sender_email.status %>
+</p>
+
+<%= link_to 'Edit', edit_sender_email_path(@sender_email) %> |
+<%= link_to 'Back', sender_emails_path %>

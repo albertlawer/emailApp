@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Easy Mail App" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Easy Mail App" %>">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <% if user_signed_in? %>
+  <body class="text-left">    
+    <div class="app-admin-wrap layout-sidebar-large">
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/side_bar' %>
+      <div class="main-content-wrap sidenav-open d-flex flex-column">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      </div>
+      </div>
+    </body>
+  <% else %>
+    <div class="auth-layout-wrap" style="background-image: url(<%= image_path("backdrop.jpg")%>)">
+      <%= yield %>
+    </div>
+  <% end %>
+  
+  <%= javascript_include_tag 'application' %>
+</html>

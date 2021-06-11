@@ -1,0 +1,67 @@
+
+
+<%= simple_form_for(@mail_group) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="row">
+    <div class="col-md-3 form-group mb-3">
+        <label for="name">Name</label>
+        <%= f.input :name, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Name" } %>
+
+        <label for="name">Description</label>
+        <%= f.input :description, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Description" } %>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+
+
+    <div>
+        <%= f.label :name, "Emails" %>
+        <table class="display table table-striped table-bordered" id="zero_configuration_table">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th><input type="checkbox" onClick="toggle(this)" /> All<br/></th>
+              </tr>
+          </thead>
+  
+          <% @emails.each do |email| %>
+          <tr>
+            <td> <%= email.name %> </td>
+            <td> <%= email.email %> </td>
+            <td> <%= check_box_tag 'emails[]', email.id, @role_permissions.include?(email.id), {array: true, class: "check_box"} %> </td>
+          </tr>
+          <% end %>
+      </table>
+    </div>
+
+
+    <%= f.input :company_id, as: :hidden, input_html: { value: current_user.client_id } %>
+    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.input :status, as: :hidden, input_html: { value: "1" } %>
+  
+
+    <div class="col-md-12">
+      <%= f.button :submit, "Save", class: "btn btn-primary" %>
+      <%= link_to 'Back', mail_groups_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+<script type="text/javascript">
+  function toggle(source) {
+    checkboxes = document.getElementsByName('emails[]');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = source.checked;
+    }
+  }
+</script>

@@ -1,0 +1,53 @@
+
+<%= simple_form_for(@client_info) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="row">
+
+    <div class="col-md-6 form-group mb-3">
+      <label for="username">Payment Type</label>
+      <%= f.input :payment_type, collection: @payment_types, label_method: :name, value_method: :id, label: false, input_html: { class: "form-control form-control-rounded" } %>
+    </div>
+
+
+      
+    <div class="col-md-6 form-group mb-3">
+      <label for="client_name">Client Name</label>
+      <%= f.input :name, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Client Name" } %>
+    </div>
+    
+    <div class="col-md-6 form-group mb-3">
+        <label for="direct_account_number">Email</label>
+        <%= f.input :email, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Email" } %>
+    </div>
+
+    <div class="col-md-6 form-group mb-3">
+        <label for="direct_account_number">Phone Number</label>
+        <%= f.input :phone_one, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Phone Number" } %>
+    </div>
+
+    <div class="col-md-6 form-group mb-3">
+        <label for="direct_account_number">Alternate Phone Number</label>
+        <%= f.input :phone_two, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Alternate Phone Number" } %>
+    </div>
+      
+    
+    <div class="col-md-6 form-group mb-3">
+        <label for="assigned_extension">Expiry Date</label>
+        <%= f.input :expiry_date, as: :date, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Assigned Extension" } %>
+    </div>
+      
+      
+
+    <%= f.input :status, as: :hidden, input_html: { value: 1 } %>
+    
+    <div class="col-md-12">
+      <%= f.button :submit, "Save", class: "btn btn-primary" %>
+      <%= link_to 'Back', client_infos_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+
+
+
+<% end %>

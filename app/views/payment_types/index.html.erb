@@ -1,0 +1,66 @@
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Payment Types</h1>
+                    <ul>
+                        <li>Payments List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Payments List</strong></h4>
+                                
+                                <%= link_to 'New Type', new_payment_type_path, class: "btn btn-primary btn-sm ripple m-1" %>
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Users Count</th>
+                                                <th>Email Count</th>
+                                                <th>Email Books</th>
+                                                <th>Email Templates</th>
+                                                <th>Sender Emails</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% @payment_types.each do |payment_type| %>
+                                            <tr>
+                                              <td><%= payment_type.name %></td>
+                                              <td><%= payment_type.users %></td>
+                                              <td><%= payment_type.email_count %></td>
+                                              <td><%= payment_type.email_book %></td>
+                                              <td><%= payment_type.email_templates %></td>
+                                              <td><%= payment_type.sender_email %></td>
+                                              <td><%= link_to 'Edit', edit_payment_type_path(payment_type), class: "btn btn-warning btn-rounded m-1" %></td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Users Count</th>
+                                                <th>Email Count</th>
+                                                <th>Email Books</th>
+                                                <th>Email Templates</th>
+                                                <th>Sender Emails</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>

@@ -1,0 +1,119 @@
+<%# add navigation links to this file %>
+        <div class="side-content-wrap">
+            <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
+                <ul class="navigation-left">
+                    <li class="nav-item">
+                    	<%= link_to '<i class="nav-icon i-Bar-Chart"></i><span class="nav-text">Dashboard</span>'.html_safe, root_path, class: "nav-item-hold" %>
+                    </li>
+                    
+                    <% if current_user.role_id == 1 || current_user.role_id == 2 #sys admin %>
+	                    <li class="nav-item">
+	                    	<%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Clients</span>'.html_safe, client_infos_path, class: "nav-item-hold" %>
+	                    </li>
+	                    
+	                    
+	                    <li class="nav-item" data-item="transactions">
+	                        <a class="nav-item-hold" href="#">
+	                            <i class="nav-icon i-File-Horizontal-Text"></i>
+	                            <span class="nav-text">Emails Transactions</span>
+	                        </a>
+	                        <div class="triangle"></div>
+	                    </li>
+	                    
+	                    
+	                    <li class="nav-item" data-item="thesetups">
+	                        <a class="nav-item-hold" href="#">
+	                            <i class="nav-icon i-Loading-2"></i>
+	                            <span class="nav-text">Setups</span>
+	                        </a>
+	                        <div class="triangle"></div>
+	                    </li>
+	                    
+	                  
+	                   
+
+	                    
+                    <% elsif current_user.role_id == 3 # client admin %>
+	                    <li class="nav-item">
+	                    	<%= link_to '<i class="nav-icon i-Mail-Favorite"></i><span class="nav-text">Sender Emails</span>'.html_safe, sender_emails_path, class: "nav-item-hold" %>
+	                    </li>
+	                    
+	                    
+	                    <li class="nav-item" data-item="theemails">
+	                        <a class="nav-item-hold" href="#">
+	                            <i class="nav-icon i-Mail-2"></i>
+	                            <span class="nav-text">Emails</span>
+	                        </a>
+	                        <div class="triangle"></div>
+	                    </li>
+
+
+	                    <li class="nav-item">
+	                    	<%= link_to '<i class="nav-icon i-Spam-Mail"></i><span class="nav-text">Email Templates</span>'.html_safe, templates_path, class: "nav-item-hold" %>
+	                    </li>
+	                    
+	                    
+	                    <li class="nav-item" data-item="sendmail">
+	                        <a class="nav-item-hold" href="#">
+	                            <i class="nav-icon i-Mail-Outbox"></i>
+	                            <span class="nav-text">Send Mail</span>
+	                        </a>
+	                        <div class="triangle"></div>
+	                    </li>
+
+
+	                    <li class="nav-item">
+	                    	<%= link_to '<i class="nav-icon i-File-Horizontal-Text"></i><span class="nav-text">Email Transactions</span>'.html_safe, transactions_path, class: "nav-item-hold" %>
+	                    </li>
+	                    <li class="nav-item">
+	                    	<%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Users</span>'.html_safe, client_users_path, class: "nav-item-hold" %>
+	                    </li>
+	                    
+	                    
+                    <% elsif current_user.role_id == 4 # client user %>
+	                    <li class="nav-item">
+	                    	<%= link_to '<i class="nav-icon i-File-Horizontal-Text"></i><span class="nav-text">Transactions</span>'.html_safe, "#", class: "nav-item-hold" %>
+	                    </li>
+
+                    <% end %>
+                </ul>
+            </div>
+
+            <div class="sidebar-left-secondary rtl-ps-none" data-perfect-scrollbar="" data-suppress-scroll-x="true">
+                <!-- Submenu Dashboards-->
+                <ul class="childNav" data-parent="transactions">
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-File-Horizontal-Text"></i><span class="nav-text">Transactions</span>'.html_safe, "#", class: "nav-item-hold" %></li>
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-File-Horizontal-Text"></i><span class="nav-text">Failed Transactions</span>'.html_safe, "#", class: "nav-item-hold" %></li>
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-File-Horizontal-Text"></i><span class="nav-text">Reprocessed Transactions</span>'.html_safe, "#", class: "nav-item-hold" %></li>
+                </ul>
+                
+                
+                <ul class="childNav" data-parent="thesetups">
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Double-Tap"></i><span class="nav-text">Payment Types</span>'.html_safe, payment_types_path, class: "nav-item-hold" %></li>
+                    <% if current_user.role_id==1 %>
+                    	<li class="nav-item"><%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Roles</span>'.html_safe, roles_path, class: "nav-item-hold" %></li>
+                    <% end %>
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Users</span>'.html_safe, admin_users_path, class: "nav-item-hold" %></li>
+                </ul>
+
+
+                <ul class="childNav" data-parent="theemails">
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Double-Tap"></i><span class="nav-text">Email List</span>'.html_safe, emails_path, class: "nav-item-hold" %></li>
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Email Groups</span>'.html_safe, mail_groups_path, class: "nav-item-hold" %></li>
+                </ul>
+
+
+
+                <ul class="childNav" data-parent="sendmail">
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Double-Tap"></i><span class="nav-text">Quick Mail</span>'.html_safe, quick_mail_path, class: "nav-item-hold" %></li>
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Send Mail</span>'.html_safe, send_mail_path, class: "nav-item-hold" %></li>
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Drafts</span>'.html_safe, drafts_path, class: "nav-item-hold" %></li>
+                    <li class="nav-item"><%= link_to '<i class="nav-icon i-Administrator"></i><span class="nav-text">Sent Mails</span>'.html_safe, sent_mails_path, class: "nav-item-hold" %></li>
+                </ul>
+
+                
+            </div>
+            <div class="sidebar-overlay"></div>
+        </div>
+        <!-- =============== Left side End ================-->
+        

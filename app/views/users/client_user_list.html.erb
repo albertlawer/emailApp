@@ -1,0 +1,67 @@
+
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Client User Information</h1>
+                    <ul>
+                        <li>Client User List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Client User List for <strong><%= @client_name %></strong></h4>
+                                
+                                <%= link_to 'New Client User', new_client_user_path(@the_client_id), class: "btn btn-primary btn-sm ripple m-1" %>
+                                <%= link_to 'Back', client_infos_path(@the_client_id), class: "btn btn-danger btn-sm ripple m-1" %>
+                                
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Username</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% @users.each do |user| %>
+                                              <tr>
+                                                <td><%= user.username %></td>
+                                                <td><%= user.first_name %> <%= user.last_name %></td>
+                                                <td><%= user.email %></td>
+                                                <td><%= user.role.name %></td>
+                                                <td>
+                                                    <% if current_user.id != user.id %>
+                                                        <%= link_to 'Edit', edit_client_user_path(id: user.id), class: "btn btn-warning btn-rounded m-1" %>
+                                                    <% end %>
+                                                </td>                                     
+                                              </tr>
+                                            <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Username</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>

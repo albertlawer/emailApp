@@ -1,0 +1,42 @@
+toolbar:
+  - styleselect formatselect | bold italic underline strikethrough forecolor backcolor | link image uploadimage | alignleft aligncenter alignright alignjustify | blockquote | numlist bullist outdent indent  | removeformat
+  - code | undo redo
+plugins:
+  - link
+  - codesample
+  - textcolor
+  - uploadimage
+  - lists
+  - code
+  - preview
+  - fullpage
+  - powerpaste
+  - searchreplace
+  - autolink
+  - directionality
+  - advcode
+  - visualblocks
+  - visualchars
+  - fullscreen
+  - image
+  - media
+  - template
+  - table
+  - charmap
+  - hr
+  - pagebreak
+  - nonbreaking
+  - anchor
+  - toc
+  - insertdatetime
+  - advlist
+  - wordcount
+  - tinymcespellchecker
+  - a11ychecker
+  - imagetools
+  - mediaembed 
+  - linkchecker
+  - contextmenu
+  - colorpicker
+  - textpattern
+  - help

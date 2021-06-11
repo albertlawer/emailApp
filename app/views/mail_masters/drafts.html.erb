@@ -1,0 +1,83 @@
+
+
+
+
+
+
+
+
+
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Draft Information</h1>
+                    <ul>
+                        <li>Draft List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Draft List</strong></h4>
+                                
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Subject</th>
+                                                <th>Email Type</th>
+                                                <th>Email Sender</th>
+                                                <th>Email Group</th>
+                                                <th>Schedule Time</th>
+                                                <th>Body Template</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% @mail_masters.each do |mail_master| %>
+                                            <tr>
+                                              <td><%= mail_master.subject %></td>
+                                              <td>
+                                                <% if mail_master.email_type == 1 %>
+                                                  Instant Mail
+                                                <% else %>
+                                                  Schedule Mail
+                                                <% end %>
+                                              </td>
+                                              <td><%= mail_master.a_sender.name %></td>
+                                              <td><%= mail_master.a_group.name %></td>
+                                              <td><%= mail_master.schedule_time %></td>
+                                              <td><%= mail_master.a_body.name %></td>
+                                              <td>
+                                                <%= link_to 'Edit', edit_draft_path(mail_master), class: "btn btn-primary btn-rounded m-1" %>
+                                                <%= link_to 'Send Mail', push_mail_path(mail_master), data: { confirm: 'Are you sure you want to send this mail?' }, class: "btn btn-success btn-rounded m-1" %>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Subject</th>
+                                                <th>Email Type</th>
+                                                <th>Email Sender</th>
+                                                <th>Email Group</th>
+                                                <th>Schedule Time</th>
+                                                <th>Body Template</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>

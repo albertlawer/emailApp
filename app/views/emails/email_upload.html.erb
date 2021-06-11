@@ -1,0 +1,39 @@
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Emails</h1>
+                    <ul>
+                        <li>Upload Email</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row">
+                	<div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="card-title mb-3">Upload Email List</div>
+                                
+                                <p>Note:: Click <%= link_to 'Here', sample_csv_path %> to download a sample csv file. All fields are required except the email aspect.</p>
+
+                                <%= simple_form_for(@email, :url => emails_import_path, html: {:multipart => true }) do |f| %>
+                                    <%= f.error_notification %>
+ 
+                                    <div class="col-md-6 input-group mb-3">
+                                        <div class="input-group-prepend"><span class="input-group-text" id="inputGroupFileAddon01">Upload</span></div>
+                                        <div class="custom-file">
+                                            <input class="custom-file-input" id="inputGroupFile01" name="thefile" type="file" aria-describedby="inputGroupFileAddon01" required />
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        </div>
+                                    </div>
+
+                                    <input type="submit" name="Upload" class= "btn btn-primary" />
+                                    <%= link_to 'Back', emails_path, class: "btn btn-danger" %>
+                                <% end %>
+                            </div>
+	                    </div>
+	                </div>
+                </div>
+            </div>
+            

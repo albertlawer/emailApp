@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request code:</strong>
+  <%= @mail_attachment.request_code %>
+</p>
+
+<p>
+  <strong>Attachment name:</strong>
+  <%= @mail_attachment.attachment_name %>
+</p>
+
+<p>
+  <strong>Attachment path:</strong>
+  <%= @mail_attachment.attachment_path %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @mail_attachment.status %>
+</p>
+
+<%= link_to 'Edit', edit_mail_attachment_path(@mail_attachment) %> |
+<%= link_to 'Back', mail_attachments_path %>

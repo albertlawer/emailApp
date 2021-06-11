@@ -1,0 +1,64 @@
+
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Email Information</h1>
+                    <ul>
+                        <li>Email List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Email List</strong></h4>
+                                
+                                <%= link_to 'New Email', new_email_path, class: "btn btn-primary btn-sm ripple m-1" %>
+                                <%= link_to 'Upload File', email_upload_path, class: "btn btn-success btn-sm ripple m-1" %>
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% @emails.each do |email| %>
+                                            <tr>
+                                              <td><%= email.name %></td>
+                                              <td><%= email.email %></td>
+                                              <td><% if email.status %>
+                                                  <span class="badge badge-pill badge-success p-2 m-1">Active</span>
+                                                <% else %>
+                                                  <span class="badge badge-pill badge-danger p-2 m-1">Inactive</span>
+                                                <% end %>
+                                              </td>
+                                              <td><%= link_to 'Edit', edit_email_path(email), class: "btn btn-warning btn-rounded m-1" %></td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>

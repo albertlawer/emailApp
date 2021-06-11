@@ -1,0 +1,159 @@
+
+
+<button class="btn btn-primary m-1" type="button" data-toggle="modal" data-target="#verifyModalContent" data-whatever="@mdo">Help</button>
+<br/>
+                                
+  
+<div class="modal fade" id="verifyModalContent" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="verifyModalContent_title">SMTP Types</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>Email Provider</th>
+                    <th>SMTP Settings</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>AOL (including Verizon.net)</td>
+                    <td>
+                      <ul>
+                        <li>Server: smtp.aol.com</li>
+                        <li>Port: 465</li>
+                        <li>Encryption: SSL/TLS</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Gmail</td>
+                    <td>
+                      <ul>
+                        <li>Server: smtp.gmail.com</li>
+                        <li>Port: 465</li>
+                        <li>Encryption: SSL/TLS</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>iCloud</td>
+                    <td>
+                      <ul>
+                        <li>Server: smtp.mail.me.com</li>
+                        <li>Port: 587</li>
+                        <li>Encryption: STARTTLS</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MSN</td>
+                    <td>
+                      <ul>
+                        <li>Server: smtp-mail.outlook.com</li>
+                        <li>Port: 587</li>
+                        <li>Encryption: STARTTLS</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Microsoft 365</td>
+                    <td>
+                      <ul>
+                        <li>Server: smtp.office365.com</li>
+                        <li>Port: 587</li>
+                        <li>Encryption: STARTTLS</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Outlook.com / Hotmail.com / Live.com</td>
+                    <td>
+                      <ul>
+                        <li>Server: smtp.office365.com</li>
+                        <li>Port: 587</li>
+                        <li>Encryption: STARTTLS</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Yahoo</td>
+                    <td>
+                      <ul>
+                        <li>Server: smtp.mail.yahoo.com</li>
+                        <li>Port: 587 / 465</li>
+                        <li>Encryption: SSL/TLS/STARTTLS</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+                                
+                                
+
+
+<%= simple_form_for(@sender_email) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="row">
+    <div class="col-md-6 form-group mb-3">
+        <label for="name">Name</label>
+        <%= f.input :name, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Name" } %>
+    </div>
+
+    <div class="col-md-6 form-group mb-3">
+        <label for="name">Email Username</label>
+        <%= f.input :email_username, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Email Username" } %>
+    </div>
+
+
+    <div class="col-md-6 form-group mb-3">
+        <label for="name">Email Password</label>
+        <%= f.input :email_password, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Email Password" } %>
+    </div>
+
+
+    <div class="col-md-6 form-group mb-3">
+        <label for="name">Server Address</label>
+        <%= f.input :email_address, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Email Address" } %>
+    </div>
+
+
+    <div class="col-md-6 form-group mb-3">
+        <label for="name">Email Port</label>
+        <%= f.input :email_port, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Email Address" } %>
+    </div>
+
+
+    <div class="col-md-6 form-group mb-3">
+        <label for="name">Authentication Type</label>
+        <%= f.input :authentication, collection: @auth, label_method: :first, value_method: :last, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Email Address" } %>
+    </div>
+
+
+
+
+    <%= f.input :company_id, as: :hidden, input_html: { value: current_user.client_id } %>
+    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.input :status, as: :hidden, input_html: { value: "1" } %>
+  
+
+    <div class="col-md-12">
+      <%= f.button :submit, "Save", class: "btn btn-primary" %>
+      <%= link_to 'Back', sender_emails_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,79 @@
+
+
+
+    <!-- ============ Body content start ============= -->
+    <div class="main-content">
+        <div class="breadcrumb">
+            <h1>User Information</h1>
+            <ul>
+                <li>New Client User</li>
+            </ul>
+        </div>
+        <div class="separator-breadcrumb border-top"></div>
+        <!-- end of row-->
+        <div class="row">
+        	<div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="card-title mb-3">New Client User for <strong><%= @client_name %></strong></div>
+						<%= simple_form_for(@user, :url => create_client_user_path, :method => :post) do |f| %>
+						  <%= f.error_notification %>
+						  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+						  
+						  	<div class="row">
+							    <div class="col-md-6 form-group mb-3">
+							        <label for="first_name">First Name</label>
+							        <%= f.input :first_name, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter First Name" } %>
+							    </div>
+							    
+							    
+							    <div class="col-md-6 form-group mb-3">
+							        <label for="last_name">Surname</label>
+							        <%= f.input :last_name, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Surname" } %>
+							    </div>
+							    
+							    <div class="col-md-6 form-group mb-3">
+							        <label for="email">Email</label>
+							        <%= f.input :email, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Email" } %>
+							    </div>
+
+							    <div class="col-md-6 form-group mb-3">
+							        <label for="username">Role</label>
+							        <%= f.input :role_id, collection: @roles, label_method: :first, value_method: :last, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Select Role" } %>
+							    </div>
+
+							    
+							    <div class="col-md-6 form-group mb-3">
+							        <label for="username">Username</label>
+							        <%= f.input :username, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Username" } %>
+							    </div>
+							    
+							    
+
+							    <div class="col-md-6 form-group mb-3">
+							        <label for="password">Password</label>
+							        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Password" } %>
+							    </div>
+							    
+							    
+							    <div class="col-md-6 form-group mb-3">
+							        <label for="password_confirmation">Confirm Password</label>
+							        <%= f.input :password_confirmation, required: true, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Confirm Password" } %>
+							    </div>
+							    
+							    	        
+								<%= f.input :client_id, as: :hidden  %>
+							    
+							    <div class="col-md-12">
+							    	<%= f.button :submit, "Save", class: "btn btn-primary" %>
+						    		<%= link_to 'Back', client_user_list_path(@the_client_id), class: "btn btn-danger" %>
+							    </div>
+							</div>
+						<% end %>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    

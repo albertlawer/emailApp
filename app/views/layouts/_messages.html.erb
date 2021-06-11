@@ -1,0 +1,9 @@
+<% flash.each do |key, value| %>
+    <div class="alert alert-card alert-<% if key.to_s == 'notice' %><%= 'info' %><% elsif key.to_s == 'success' %><%= 'success' %><% else key.to_s == 'danger' %><%= 'danger' %><% end %>" role="alert">
+    	<%= value %>
+        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% end %>
+

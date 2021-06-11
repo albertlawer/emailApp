@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @payment_type.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @payment_type.body %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= @payment_type.users %>
+</p>
+
+<p>
+  <strong>Email count:</strong>
+  <%= @payment_type.email_count %>
+</p>
+
+<p>
+  <strong>Email book:</strong>
+  <%= @payment_type.email_book %>
+</p>
+
+<p>
+  <strong>Email templates:</strong>
+  <%= @payment_type.email_templates %>
+</p>
+
+<p>
+  <strong>Sender email:</strong>
+  <%= @payment_type.sender_email %>
+</p>
+
+<%= link_to 'Edit', edit_payment_type_path(@payment_type) %> |
+<%= link_to 'Back', payment_types_path %>

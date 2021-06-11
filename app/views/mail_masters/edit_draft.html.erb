@@ -1,0 +1,141 @@
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Edit Draft</h1>
+                    <ul>
+                        <li>Edit Draft</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row">
+                  <div class="col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="card-title mb-3">Edit Draft</div>
+                                
+
+
+                                <%= simple_form_for(@mail_master, :url => update_draft_path, :method => :post, html: { multipart: true }) do |f| %>
+                                  <%= f.error_notification %>
+                                  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+                                  <div class="row">
+                                    <div class="col-md-3 form-group mb-3">
+                                        
+                                        <label for="name">Mail Type</label>
+                                        <%= f.input :email_type, collection: @email_types, label_method: :first, value_method: :last, label: false, input_html: { class: "form-control form-control-rounded", onchange: "getMailType(this)" } %>
+
+                                        <label for="name">Sender Email</label>
+                                        <%= f.input :sender_email_id, collection: @sender_email, label_method: :first, value_method: :last, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Name" } %>
+
+                                        <label for="name">Recipient Group</label>
+                                        <%= f.input :email_group, collection: @email_groups, label_method: :first, value_method: :last, label: false, input_html: { class: "form-control form-control-rounded" } %>
+
+                                        <label for="name">Subject</label>
+                                        <%= f.input :subject, label: false, input_html: { class: "form-control form-control-rounded" } %>
+
+                                        <label for="name">Template</label>
+                                        <%= f.input :body_template_id, collection: @email_templates, label_method: :first, value_method: :last, label: false, input_html: { class: "form-control form-control-rounded", onchange: "getpreview(this)", id: "template_id" } %>
+
+                                        <label for="name" id="timeLabel">Time</label>
+                                        <%= f.input :schedule_time, html5: true, label: false, input_html: { class: "form-control form-control-rounded datetimepicker", id: "timeValue" } %>
+
+                                        <label for="name">Attachments</label>
+                                        <input name="attachment_files" type="file" multiple class="form-control form-control-rounded " />
+
+                                        <%= f.input :id, as: :hidden, input_html: { name:"id" } %>
+
+                                        <br/>
+
+                                        <h4>Note:: Please use **@name for names and **@email for emails the Subject</h4>
+                                    </div>
+
+
+                                    <div  class="col-md-6 mb-4">
+                                        <div id="loader" class="spinner-bubble spinner-bubble-primary m-5" style="display: none;"></div>
+
+                                        <div class="card text-left">
+                                            <div class="card-body" id="thePreview" style="display: none;">                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 form-group mb-3">
+                                    </div>
+
+
+                                    <%= f.input :company_id, as: :hidden, input_html: { value: current_user.client_id } %>
+                                    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+                                    <%= f.input :request_code, as: :hidden %>
+                                  
+
+                                    <div class="col-md-12">
+                                      <%= f.button :submit, "Send", class: "btn btn-primary" %>
+                                      <%= f.button :submit, "Update Draft", class: "btn btn-success" %>
+                                      <%= link_to 'Cancel', root_path, class: "btn btn-danger" %>
+                                    </div>
+                                  </div>
+                                <% end %>
+
+
+
+
+
+                                <script type="text/javascript">
+                                    function getpreview(selected) {
+                                        var theID =selected.value;
+                                        var url = "getbody";
+
+                                        document.getElementById('loader').style.display = "block";
+                                        document.getElementById('thePreview').style.display = "none";
+                                        $.ajax({
+                                            type: "POST",
+                                            url: url,
+                                            data: {
+                                                the_id: theID
+                                            }, // serializes the form's elements.
+                                            success: function (data) {
+                                                $("#thePreview").html(data.resp_body);
+                                            },
+                                            complete: function(data) {
+                                                document.getElementById('loader').style.display = "none";
+                                                document.getElementById('thePreview').style.display = "block";
+                                            }
+                                        });
+                                        return false;
+                                    }
+
+
+                                    function getMailType(selected){
+                                        // instant mail is 1 scheduled is 2
+                                        var theValue = selected.value; 
+                                        if (theValue == 1){
+                                            document.getElementById('timeLabel').style.display = "none";
+                                            document.getElementById('timeValue').style.display = "none";
+                                        }
+                                        else{
+                                            document.getElementById('timeLabel').style.display = "block";
+                                            document.getElementById('timeValue').style.display = "block";
+                                        }
+                                    }
+                                </script>
+
+
+
+
+
+
+
+
+                            </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            
+
+
+

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Emails Mail Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Mail group</th>
+      <th>Status</th>
+      <th>Company</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @emails_mail_groups.each do |emails_mail_group| %>
+      <tr>
+        <td><%= emails_mail_group.email_id %></td>
+        <td><%= emails_mail_group.mail_group_id %></td>
+        <td><%= emails_mail_group.status %></td>
+        <td><%= emails_mail_group.company_id %></td>
+        <td><%= emails_mail_group.user_id %></td>
+        <td><%= link_to 'Show', emails_mail_group %></td>
+        <td><%= link_to 'Edit', edit_emails_mail_group_path(emails_mail_group) %></td>
+        <td><%= link_to 'Destroy', emails_mail_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Emails mail group', new_emails_mail_group_path %>

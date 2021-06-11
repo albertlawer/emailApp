@@ -1,0 +1,81 @@
+
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Client Information</h1>
+                    <ul>
+                        <li>Client List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Client List</strong></h4>
+                                
+                                <%= link_to 'New Client', new_client_info_path, class: "btn btn-primary btn-sm ripple m-1" %>
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Client</th>
+                                                <th>Type</th>
+                                                <th>Email</th>
+                                                <th>Phone Number</th>
+                                                <th>Expiry date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% @client_infos.each do |client_info| %>
+                                            <tr>
+                                              <td><%= client_info.name %></td>
+                                              <td><%= client_info.a_type.name %></td>
+                                              <td><%= client_info.email %></td>
+                                              <td><%= client_info.phone_one %> / <%= client_info.phone_two %></td>
+                                              <td><%= client_info.expiry_date.strftime("%F") %></td>
+                                              <td>
+                                                <% if client_info.status %>
+                                                  <span class="badge badge-pill badge-success p-2 m-1">Active</span>
+                                                <% else %>
+                                                  <span class="badge badge-pill badge-danger p-2 m-1">Inactive</span>
+                                                <% end %>
+                                              </td>
+                                              <td>
+                                                <%= link_to 'Users', client_user_list_path(client_info.id), class: "btn btn-success btn-rounded m-1" %> 
+                                                <%= link_to 'Edit', edit_client_info_path(client_info), class: "btn btn-warning btn-rounded m-1" %>
+                                                <% if client_info.status %>
+                                                  <%= link_to 'Disable', client_info_disable_path(client_info.id), data: { confirm: 'Are you sure you want to disable client?' }, class: "btn btn-danger btn-rounded m-1" %>
+                                                <% else %>
+                                                  <%= link_to 'Enable', client_info_enable_path(client_info.id), data: { confirm: 'Are you sure you want to enable client?' }, class: "btn btn-info btn-rounded m-1" %>
+                                                <% end %>
+                                              </td>                     
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Client</th>
+                                                <th>Type</th>
+                                                <th>Email</th>
+                                                <th>Phone Number</th>
+                                                <th>Expiry date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>

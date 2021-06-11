@@ -1,0 +1,44 @@
+
+    
+<%= simple_form_for(@template) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="row">
+    <div class="col-md-3 form-group mb-3">
+        <label for="name">Name</label>
+        <%= f.input :name, label: false, input_html: { class: "form-control form-control-rounded", placeholder: "Enter Name" } %>
+
+        <br/>
+
+        <h4>Note:: Please use **@name for names and **@email for emails in either the Subject or the mail body</h4>
+    </div>
+
+
+    <div class="col-md-8 form-group mb-3">
+        <label for="name">Body</label>
+        <%= f.text_area :body, :class => "html-editor-cm" %>
+    </div>
+
+
+
+    <%= f.input :company_id, as: :hidden, input_html: { value: current_user.client_id } %>
+    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.input :status, as: :hidden, input_html: { value: "1" } %>
+  
+
+    <div class="col-md-12">
+      <%= f.button :submit, "Save", class: "btn btn-primary" %>
+      <%= link_to 'Back', templates_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+

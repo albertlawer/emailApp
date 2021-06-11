@@ -1,0 +1,86 @@
+
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Email Transactions Information</h1>
+                    <ul>
+                        <li>Email Transactions List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Email Transactions List</strong></h4>
+                                
+
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Subject</th>
+                                                <th>Body</th>
+                                                <th>Status</th>
+                                                <th>Time Sent</th>
+                                                <th>Sent By</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% @transactions.each do |transaction| %>
+                                            <tr>
+                                              <td>
+                                                <% if transaction.request_master_id == 0 %>
+                                                  Quick Mail
+                                                <% else %>
+                                                  <% if transaction.a_mail_master.email_type == 1 %>
+                                                    Instant Mail
+                                                  <% else %>
+                                                    Scheduled Mail
+                                                  <% end %>
+                                                <% end %>
+                                              </td>
+                                              <td><%= transaction.from_mail %></td>
+                                              <td><%= transaction.an_email.email %></td>
+                                              <td><%= transaction.subject %></td>
+                                              <td><%#= transaction.body_message %></td>
+                                              <td>
+                                                <% if transaction.status %>
+                                                  <span class="badge badge-pill badge-success p-2 m-1">Successful</span>
+                                                <% else %>
+                                                  <span class="badge badge-pill badge-danger p-2 m-1">Failed</span>
+                                                <% end %>
+                                              </td>
+                                              <td><%= transaction.created_at.strftime("%R %F") %></td>
+                                              <td><%= transaction.a_user.first_name  %> <%= transaction.a_user.last_name %></td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Subject</th>
+                                                <th>Body</th>
+                                                <th>Status</th>
+                                                <th>Time Sent</th>
+                                                <th>Sent By</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>

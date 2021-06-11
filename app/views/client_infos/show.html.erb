@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client_info.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @client_info.email %>
+</p>
+
+<p>
+  <strong>Phone one:</strong>
+  <%= @client_info.phone_one %>
+</p>
+
+<p>
+  <strong>Phone two:</strong>
+  <%= @client_info.phone_two %>
+</p>
+
+<p>
+  <strong>Payment type:</strong>
+  <%= @client_info.payment_type %>
+</p>
+
+<p>
+  <strong>Expiry date:</strong>
+  <%= @client_info.expiry_date %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @client_info.status %>
+</p>
+
+<%= link_to 'Edit', edit_client_info_path(@client_info) %> |
+<%= link_to 'Back', client_infos_path %>

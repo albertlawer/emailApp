@@ -1,0 +1,89 @@
+
+
+
+
+
+
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Sender Email Information</h1>
+                    <ul>
+                        <li>Sender Email List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Sender Email List</strong></h4>
+                                
+                                <%= link_to 'New Sender Email', new_sender_email_path, class: "btn btn-primary btn-sm ripple m-1" %>
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email Username</th>
+                                                <th>Email Password</th>
+                                                <th>Email Address</th>
+                                                <th>Email Port</th>
+                                                <th>Authentication</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% @sender_emails.each do |sender_email| %>
+                                            <tr>
+                                              <td><%= sender_email.name %></td>
+                                              <td><%= sender_email.email_username %></td>
+                                              <td> ********** <%#= sender_email.email_password %></td>
+                                              <td><%= sender_email.email_address %></td>
+                                              <td><%= sender_email.email_port %></td>
+                                              <td><%= sender_email.authentication %></td>
+                                              <td>
+                                                <% if sender_email.status %>
+                                                  <span class="badge badge-pill badge-success p-2 m-1">Active</span>
+                                                <% else %>
+                                                  <span class="badge badge-pill badge-danger p-2 m-1">Inactive</span>
+                                                <% end %>
+                                              </td>
+                                              <td>
+                                                <%= link_to 'Edit', edit_sender_email_path(sender_email), class: "btn btn-warning btn-rounded m-1" %>
+                                                <%= link_to 'Quick Test', test_sender_email_path(sender_email), data: { confirm: 'A test mail would be sent to your email. Confirm?' }, class: "btn btn-secondary btn-rounded m-1" %>
+                                                <% if sender_email.status %>
+                                                  <%#= link_to 'Disable', client_info_disable_path(client_info.id), data: { confirm: 'Are you sure you want to disable client?' }, class: "btn btn-danger btn-rounded m-1" %>
+                                                <% else %>
+                                                  <%#= link_to 'Enable', client_info_enable_path(client_info.id), data: { confirm: 'Are you sure you want to enable client?' }, class: "btn btn-info btn-rounded m-1" %>
+                                                <% end %>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email Username</th>
+                                                <th>Email Password</th>
+                                                <th>Email Address</th>
+                                                <th>Email Port</th>
+                                                <th>Authentication</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>

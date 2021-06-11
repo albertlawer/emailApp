@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request code:</strong>
+  <%= @mail_master.request_code %>
+</p>
+
+<p>
+  <strong>Email type:</strong>
+  <%= @mail_master.email_type %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @mail_master.subject %>
+</p>
+
+<p>
+  <strong>Body template:</strong>
+  <%= @mail_master.body_template_id %>
+</p>
+
+<p>
+  <strong>Schedule time:</strong>
+  <%= @mail_master.schedule_time %>
+</p>
+
+<p>
+  <strong>Email group:</strong>
+  <%= @mail_master.email_group %>
+</p>
+
+<p>
+  <strong>Sender email:</strong>
+  <%= @mail_master.sender_email_id %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @mail_master.company_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @mail_master.user_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @mail_master.status %>
+</p>
+
+<%= link_to 'Edit', edit_mail_master_path(@mail_master) %> |
+<%= link_to 'Back', mail_masters_path %>

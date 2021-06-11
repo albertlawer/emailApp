@@ -1,0 +1,106 @@
+
+
+
+
+            <!-- ============ Body content start ============= -->
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <h1>Templates Information</h1>
+                    <ul>
+                        <li>Template List</li>
+                    </ul>
+                </div>
+                <div class="separator-breadcrumb border-top"></div>
+                <!-- end of row-->
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="card text-left">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Template List</strong></h4>
+                                
+                                <%= link_to 'New Template', new_template_path, class: "btn btn-primary btn-sm ripple m-1" %>
+                                
+                                <div class="table-responsive">
+                                    <table class="display table table-striped table-bordered" id="zero_configuration_table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          <% @templates.each do |template| %>
+                                            <tr>
+                                              <td><%= template.name %></td>
+                                              <td>
+                                                <% if template.status %>
+                                                  <span class="badge badge-pill badge-success p-2 m-1">Active</span>
+                                                <% else %>
+                                                  <span class="badge badge-pill badge-danger p-2 m-1">Inactive</span>
+                                                <% end %>
+                                              </td>
+                                              <td>
+                                                <button class="btn btn-success btn-rounded m-1" type="button" onclick="previewFunc('<%= template.id %>')" >Preview</button>
+                                                <%= link_to 'Edit', edit_template_path(template), class: "btn btn-warning btn-rounded m-1" %>
+                                              </td>
+                                            </tr>
+                                          <% end %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div  class="col-md-6 mb-4">
+                        <div id="loader" class="spinner-bubble spinner-bubble-primary m-5" style="display: none;"></div>
+
+                        <div class="card text-left">
+                            <div class="card-body" id="thePreview" style="display: none;">                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of row-->
+                <!-- end of main-content -->
+            </div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+    function previewFunc(theID) {
+        var url = "getbody";
+
+        document.getElementById('loader').style.display = "block";
+        document.getElementById('thePreview').style.display = "none";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                the_id: theID
+            }, // serializes the form's elements.
+            success: function (data) {
+                $("#thePreview").html(data.resp_body);
+            },
+            complete: function(data) {
+                document.getElementById('loader').style.display = "none";
+                document.getElementById('thePreview').style.display = "block";
+            }
+        });
+        return false;
+
+    }
+</script>
